@@ -1,3 +1,3 @@
-export * from './types.js';
+export * from './types';
 
-export { GeoTable as default } from './geotable.js';
+export { GeoTable as default } from './geotable';

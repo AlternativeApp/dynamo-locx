@@ -15,7 +15,7 @@
 
 import { S2Cell, S2LatLng } from 'nodes2ts';
 import type Long from 'long';
-import { type GeoPoint } from '../types.js';
+import { type GeoPoint } from '../types';
 
 export const generateGeohash = (geoPoint: GeoPoint): Long => {
   const latLng = S2LatLng.fromDegrees(geoPoint.latitude, geoPoint.longitude);

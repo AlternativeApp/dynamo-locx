@@ -1,5 +1,5 @@
 import { S2LatLng, S2LatLngRect } from 'nodes2ts';
-import { type QueryRadiusInput, type QueryRectangleInput } from '../types.js';
+import { type QueryRadiusInput, type QueryRectangleInput } from '../types';
 
 export const latLngRectFromQueryRectangleInput = (
   geoQueryRequest: QueryRectangleInput,

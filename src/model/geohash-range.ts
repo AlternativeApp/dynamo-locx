@@ -1,5 +1,5 @@
 import Long from 'long';
-import { generateHashKey } from '../s2/s2-manager.js';
+import { generateHashKey } from '../s2/s2-manager';
 
 const MERGE_THRESHOLD = 2;
 

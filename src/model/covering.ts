@@ -1,6 +1,6 @@
 import type Long from 'long';
 import type { S2CellId } from 'nodes2ts';
-import { GeohashRange } from './geohash-range.js';
+import { GeohashRange } from './geohash-range';
 
 export class Covering {
   constructor(private readonly cellIds: S2CellId[]) {

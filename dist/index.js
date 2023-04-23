@@ -15,6 +15,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = void 0;
-__exportStar(require("./types.js"), exports);
-var geotable_js_1 = require("./geotable.js");
-Object.defineProperty(exports, "default", { enumerable: true, get: function () { return geotable_js_1.GeoTable; } });
+__exportStar(require("./types"), exports);
+var geotable_1 = require("./geotable");
+Object.defineProperty(exports, "default", { enumerable: true, get: function () { return geotable_1.GeoTable; } });

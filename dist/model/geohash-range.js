@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GeohashRange = void 0;
 const long_1 = __importDefault(require("long"));
-const s2_manager_js_1 = require("../s2/s2-manager.js");
+const s2_manager_1 = require("../s2/s2-manager");
 const MERGE_THRESHOLD = 2;
 class GeohashRange {
     constructor(min, max) {
@@ -68,8 +68,8 @@ class GeohashRange {
      */
     trySplit(hashKeyLength) {
         const result = [];
-        const minHashKey = (0, s2_manager_js_1.generateHashKey)(this.rangeMin, hashKeyLength);
-        const maxHashKey = (0, s2_manager_js_1.generateHashKey)(this.rangeMax, hashKeyLength);
+        const minHashKey = (0, s2_manager_1.generateHashKey)(this.rangeMin, hashKeyLength);
+        const maxHashKey = (0, s2_manager_1.generateHashKey)(this.rangeMax, hashKeyLength);
         const denominator = 10 ** (this.rangeMin.toString().length - minHashKey.toString().length);
         if (minHashKey.equals(maxHashKey)) {
             result.push(this);
