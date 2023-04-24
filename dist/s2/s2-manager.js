@@ -29,7 +29,7 @@ const generateHashKey = (geohash, hashKeyLength) => {
         hashKeyLength++;
     }
     const geohashString = geohash.toString(10);
-    const denominator = 10 ** (geohashString.length - hashKeyLength);
+    const denominator = Math.pow(10, (geohashString.length - hashKeyLength));
     return geohash.divide(denominator);
 };
 exports.generateHashKey = generateHashKey;

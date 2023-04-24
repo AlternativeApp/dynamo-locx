@@ -70,7 +70,7 @@ class GeohashRange {
         const result = [];
         const minHashKey = (0, s2_manager_1.generateHashKey)(this.rangeMin, hashKeyLength);
         const maxHashKey = (0, s2_manager_1.generateHashKey)(this.rangeMax, hashKeyLength);
-        const denominator = 10 ** (this.rangeMin.toString().length - minHashKey.toString().length);
+        const denominator = Math.pow(10, (this.rangeMin.toString().length - minHashKey.toString().length));
         if (minHashKey.equals(maxHashKey)) {
             result.push(this);
         }

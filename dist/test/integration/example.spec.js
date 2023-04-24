@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -19,7 +28,7 @@ const locx = new index_js_1.default({
     hashKeyLength: 3,
     consistentRead: true,
 });
-ava_1.default.beforeEach(async () => {
+ava_1.default.beforeEach(() => __awaiter(void 0, void 0, void 0, function* () {
     // Use GeoTableUtil to help construct a CreateTableInput.
     const createTableInput = locx.getCreateTableRequest({
         BillingMode: 'PROVISIONED',
@@ -28,9 +37,9 @@ ava_1.default.beforeEach(async () => {
             WriteCapacityUnits: 5,
         },
     });
-    await ddb.send(new client_dynamodb_1.CreateTableCommand(createTableInput));
+    yield ddb.send(new client_dynamodb_1.CreateTableCommand(createTableInput));
     // Wait for it to become ready
-    await (0, client_dynamodb_1.waitUntilTableExists)({ client: ddb, maxWaitTime: 30 }, { TableName: locx.tableName });
+    yield (0, client_dynamodb_1.waitUntilTableExists)({ client: ddb, maxWaitTime: 30 }, { TableName: locx.tableName });
     // Load sample data in batches
     console.log('Loading sample data from capitals.json');
     const putPointInputs = capitals_js_1.default.map(function (capital, i) {
@@ -62,17 +71,17 @@ ava_1.default.beforeEach(async () => {
         }
         console.log(`Writing batch ${currentBatch++}/${Math.ceil(capitals_js_1.default.length / BATCH_SIZE)}`);
         // eslint-disable-next-line no-await-in-loop
-        await locx.batchWritePoints(thisBatch);
+        yield locx.batchWritePoints(thisBatch);
         // eslint-disable-next-line no-await-in-loop
-        await new Promise((resolve) => {
+        yield new Promise((resolve) => {
             setTimeout(resolve, WAIT_BETWEEN_BATCHES_MS);
         });
     }
-});
-(0, ava_1.default)('queryRadius', async (t) => {
+}));
+(0, ava_1.default)('queryRadius', (t) => __awaiter(void 0, void 0, void 0, function* () {
     t.teardown(teardown);
     // Perform a radius query
-    const result = await locx.queryRadius({
+    const result = yield locx.queryRadius({
         RadiusInMeter: 100000,
         CenterPoint: {
             latitude: 52.22573,
@@ -89,7 +98,7 @@ ava_1.default.beforeEach(async () => {
             geohash: { N: '5221366118452580119' },
         },
     ]);
+}));
+const teardown = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield ddb.send(new client_dynamodb_1.DeleteTableCommand({ TableName: locx.tableName }));
 });
-const teardown = async () => {
-    await ddb.send(new client_dynamodb_1.DeleteTableCommand({ TableName: locx.tableName }));
-};

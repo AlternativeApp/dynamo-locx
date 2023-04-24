@@ -1,8 +1,8 @@
 import { type CreateTableCommandInput, type DynamoDBClient, type QueryCommandInput, type QueryCommandOutput } from '@aws-sdk/client-dynamodb';
 import type Long from 'long';
-import { type BatchWritePointOutput, type DeletePointInput, type DeletePointOutput, type GetPointInput, type GetPointOutput, type PutPointInput, type PutPointOutput, type UpdatePointInput, type UpdatePointOutput, type GeoQueryInput, type QueryRadiusInput, type QueryRectangleInput, type ItemList, type GeoTableConfiguration } from './types.js';
-import type { GeohashRange } from './model/geohash-range.js';
-import { Covering } from './model/covering.js';
+import { type BatchWritePointOutput, type DeletePointInput, type DeletePointOutput, type GetPointInput, type GetPointOutput, type PutPointInput, type PutPointOutput, type UpdatePointInput, type UpdatePointOutput, type GeoQueryInput, type QueryRadiusInput, type QueryRectangleInput, type ItemList, type GeoTableConfiguration } from './types';
+import type { GeohashRange } from './model/geohash-range';
+import { Covering } from './model/covering';
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 export declare class GeoTable {
     readonly tableName: string;

@@ -34,14 +34,14 @@ import {
   type QueryRectangleInput,
   type ItemList,
   type GeoTableConfiguration,
-} from './types.js';
-import type { GeohashRange } from './model/geohash-range.js';
-import { Covering } from './model/covering.js';
-import { generateGeohash, generateHashKey } from './s2/s2-manager.js';
+} from './types';
+import type { GeohashRange } from './model/geohash-range';
+import { Covering } from './model/covering';
+import { generateGeohash, generateHashKey } from './s2/s2-manager';
 import {
   getBoundingLatLngRectFromQueryRadiusInput,
   latLngRectFromQueryRectangleInput,
-} from './s2/s2-utils.js';
+} from './s2/s2-utils';
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
